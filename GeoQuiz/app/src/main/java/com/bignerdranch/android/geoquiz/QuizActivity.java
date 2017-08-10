@@ -10,7 +10,8 @@ import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private static final String TAG = "QuizActity";
+    // 声明一个tag?
+    private static final String TAG = "QuizActivity";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -53,6 +54,8 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 进行打印，第一个参数：一个字符串tag，第二个参数，要打印的字符串信息
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
 
