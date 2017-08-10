@@ -127,6 +127,7 @@ public class QuizActivity extends AppCompatActivity {
         updateQuestion();
     }
 
+    // 以下几个方法，再加上上面的onCreate()，可以看到一个Activity的Lifecyle(所以，Activity更类似iOS的Controller)
     // @Override的作用：确保你重写方法时，没有写错方法名字
     @Override
     public void onStart() {
