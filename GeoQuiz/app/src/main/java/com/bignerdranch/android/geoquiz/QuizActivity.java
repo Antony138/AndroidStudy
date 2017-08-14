@@ -1,5 +1,6 @@
 package com.bignerdranch.android.geoquiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,8 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
-    private  Button mPrevButton;
+    private Button mPrevButton;
+    private Button mCheatButton;
     private TextView mQuestionTextView;
 
     // 声明并且赋值一个数组
@@ -63,6 +65,8 @@ public class QuizActivity extends AppCompatActivity {
 
         // iOS中通过nib文件拖线把UI和代码链接起来，Android则通过「resource ID」来进行绑定。
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+
+        // 通过updateQuestion()方法来设置textView的文本了，所以注释了下面的内容
 //        // 拿到question的ID
 //        int question = mQuestionBank[mCurrentIndex].getTextResId();
 //        // setText()方法的参数，传入的是一个ID，而不是文本
@@ -123,6 +127,29 @@ public class QuizActivity extends AppCompatActivity {
                 // 取绝对值/absolute, 再求余
                 mCurrentIndex =  Math.abs(mCurrentIndex - 1) % mQuestionBank.length;
                 updateQuestion();
+            }
+        });
+
+
+        // 连接控件
+        mCheatButton = (Button)findViewById(R.id.cheat_button);
+        // 添加点击事件
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start CheatActivity
+                // 直接跳转,没有传数据
+                // 创建Intent对象
+//                Intent i = new Intent(QuizActivity.this, CheatActivity.class);
+
+                // 跳转并传参数
+                // 拿到数据
+                boolean answerIsTure = mQuestionBank[mCurrentIndex].isAnswerTrue();
+                // 创建Intent(不需要导入CheatActivity头文件，也能调用CheatActivity里面的方法？)
+                Intent i = CheatActivity.newIntent(QuizActivity.this, answerIsTure);
+
+                // 启动activity
+                startActivity(i);
             }
         });
 
