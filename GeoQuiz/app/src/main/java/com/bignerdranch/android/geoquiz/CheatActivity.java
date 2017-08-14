@@ -23,6 +23,8 @@ public class CheatActivity extends AppCompatActivity {
 
     private TextView mAnswerTextView;
     private Button mShowAnswer;
+    // 声明一个TextView
+    private TextView mVersionTextView;
 
     // 其他acitvity没必要知道需要传什么Intent给你，所以，最好是自己创建好Intent(让其他activity调用这个方法即可)
     // 如果要传更多参数，加在answerIsTure后面即可。
@@ -78,6 +80,14 @@ public class CheatActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // 显示SDK的版本号出来
+        // 拿系统版本：String myVersion = Build.VERSION.RELEASE;
+        int sdkVersion = Build.VERSION.SDK_INT;
+        // 通过id，将变量和界面关联起来
+        mVersionTextView = (TextView) findViewById(R.id.version_text_view);
+        // 赋值变量
+        mVersionTextView.setText("APILevel: " + sdkVersion);
     }
 
     private void setAnswerShownResult(boolean isAnswerShown) {
