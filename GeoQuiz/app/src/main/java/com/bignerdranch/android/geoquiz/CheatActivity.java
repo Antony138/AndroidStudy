@@ -12,6 +12,7 @@ public class CheatActivity extends AppCompatActivity {
 
     // extra的键
     private static final String EXTRA_ANSWER_IS_TURE = "com.bignerdranch.android.geoquiz.answer_is_true";
+    private static final String EXTRA_ANSWER_SHOWN = "com.bignerdranch.android.geoquiz.answer_shown";
 
     // 用于保存传过来的数据
     private boolean mAnswerIsTure;
@@ -24,6 +25,10 @@ public class CheatActivity extends AppCompatActivity {
     public static Intent newIntent(Context packageContext, boolean answerIsTure) {
         Intent i = new Intent(packageContext, CheatActivity.class);
         return i;
+    }
+
+    public static boolean wasAnswerShown(Intent result) {
+        return result.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
     }
 
     @Override
@@ -46,7 +51,16 @@ public class CheatActivity extends AppCompatActivity {
                 } else {
                     mAnswerTextView.setText(R.string.false_button);
                 }
+
+                // 返回结果（表示使用者点解了按钮——看了答案？）
+                setAnswerShownResult(true);
             }
         });
+    }
+
+    private void setAnswerShownResult(boolean isAnswerShown) {
+        Intent data = new Intent();
+        data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
+        setResult(RESULT_OK, data);
     }
 }
