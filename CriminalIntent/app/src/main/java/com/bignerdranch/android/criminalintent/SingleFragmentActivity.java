@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by sae_antony on 15/08/2017.
  */
 
+// 这个抽象类，是为了减少重复代码而存在的，CrimeActivity和CrimeListActivity都继承自这个类
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();
 

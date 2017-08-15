@@ -13,6 +13,7 @@ public class CrimeActivity extends SingleFragmentActivity {
         return new CrimeFragment();
     }
 
+    // 将下面这部分代码，解耦到SingleFragmentActivity了
     //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
