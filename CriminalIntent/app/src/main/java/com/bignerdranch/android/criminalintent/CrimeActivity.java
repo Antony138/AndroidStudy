@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+// AppCompatActivity要改为FragmentActivity吗？
 public class CrimeActivity extends AppCompatActivity {
 
     @Override
