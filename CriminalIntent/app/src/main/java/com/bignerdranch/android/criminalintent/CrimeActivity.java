@@ -11,7 +11,7 @@ public class CrimeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime);
+        setContentView(R.layout.activity_fragment);
 
         // 获取FragmentManager对象
         FragmentManager fm = getSupportFragmentManager();
