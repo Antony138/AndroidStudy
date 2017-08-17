@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import java.util.List;
  */
 
 public class CrimeListFragment extends Fragment {
+
+    private static final String TAG = "CrimeListFragment";
+
     private RecyclerView mCrimeRecyclerView;
 
     private CrimeAdapter mAdapter;
@@ -57,6 +61,10 @@ public class CrimeListFragment extends Fragment {
 
         public void bind(Crime crime) {
             mCrime = crime;
+            // 打印mCrime.getTitle()有内容，证明是没有正确创建mTtileTextView
+            // 最终原因list_item_crime.xml没有布局mTtileTextView和mDateTextView(没有UI，也没有id，所以两个控件为null)
+            Log.d(TAG, "打印" + mCrime.getTitle());
+
             mTtileTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
         }
