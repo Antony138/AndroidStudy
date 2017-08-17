@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 
 /**
@@ -53,7 +55,7 @@ public class CrimeListFragment extends Fragment {
     // ViewHolder：只负责UI部分(简单的UI可能不没什么用，复杂的UI才能体现ViewHolder的价值)
     // RecyclerView不会自己创建views，这是ViewHolder的任务
     // 链接UI，并赋值给UI(TextView)
-    private class CrimeHolder extends RecyclerView.ViewHolder {
+    private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Crime mCrime;
 
@@ -62,6 +64,7 @@ public class CrimeListFragment extends Fragment {
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
+            itemView.setOnClickListener(this);
 
             // 链接表格中的两个textView
             mTtileTextView = (TextView)itemView.findViewById(R.id.crime_title);
@@ -79,6 +82,11 @@ public class CrimeListFragment extends Fragment {
             // 设置表格中两个view的文本内容
             mTtileTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getActivity(), mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT).show();
         }
     }
 
