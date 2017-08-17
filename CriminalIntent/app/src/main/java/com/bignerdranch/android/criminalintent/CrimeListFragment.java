@@ -50,6 +50,8 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
+    // ViewHolder：只负责UI部分(简单的UI可能不没什么用，复杂的UI才能体现ViewHolder的价值)
+    // RecyclerView不会自己创建views，这是ViewHolder的任务
     // 链接UI，并赋值给UI(TextView)
     private class CrimeHolder extends RecyclerView.ViewHolder {
 
@@ -90,7 +92,7 @@ public class CrimeListFragment extends Fragment {
             mCrimes = crimes;
         }
 
-        // 赋值数据？
+        // 调用onCreateViewHolder()方法创建viewHolder
         @Override
         public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
