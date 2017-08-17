@@ -64,6 +64,7 @@ public class CrimeListFragment extends Fragment {
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
+            // 添加点击事件
             itemView.setOnClickListener(this);
 
             // 链接表格中的两个textView
@@ -85,6 +86,7 @@ public class CrimeListFragment extends Fragment {
         }
 
         @Override
+        // 方法名，一定要是onClick
         public void onClick(View view) {
             Toast.makeText(getActivity(), mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT).show();
         }

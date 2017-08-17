@@ -18,7 +18,8 @@ public class CrimeLab {
     // 创建一个空白数组
     private List<Crime> mCrimes;
 
-    // 创建一个singlton
+    // 创建一个singleton
+    // 那么简单就创建一个singleton了？
     public static CrimeLab get(Context context) {
         if (sCrimeLab == null) {
             sCrimeLab = new CrimeLab(context);
