@@ -100,6 +100,7 @@ public class CrimeListFragment extends Fragment {
             return new CrimeHolder(layoutInflater, parent);
         }
 
+        // Bind(绑定数据)
         // 拿数据并传数据(相当于tableView:cellForRowAtIndexPath:方法中拿数据)
         @Override
         public void onBindViewHolder(CrimeHolder holder, int position) {
