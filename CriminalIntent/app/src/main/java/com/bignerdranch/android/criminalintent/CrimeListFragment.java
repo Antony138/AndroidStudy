@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -92,7 +93,13 @@ public class CrimeListFragment extends Fragment {
         @Override
         // 方法名，一定要是onClick
         public void onClick(View view) {
-            Toast.makeText(getActivity(), mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT).show();
+
+            // 点击cell，弹一个提示框
+//            Toast.makeText(getActivity(), mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT).show();
+
+            // 页面跳转: 从fragment跳activity
+            Intent intent = new Intent(getActivity(), CrimeActivity.class);
+            startActivity(intent);
         }
     }
 
