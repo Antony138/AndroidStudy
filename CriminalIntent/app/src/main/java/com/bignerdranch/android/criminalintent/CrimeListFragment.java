@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.List;
 
 /**
@@ -98,7 +96,9 @@ public class CrimeListFragment extends Fragment {
 //            Toast.makeText(getActivity(), mCrime.getTitle() + "clicked!", Toast.LENGTH_SHORT).show();
 
             // 页面跳转: 从fragment跳activity
-            Intent intent = new Intent(getActivity(), CrimeActivity.class);
+//            Intent intent = new Intent(getActivity(), CrimeActivity.class);
+            // 传递数据
+            Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
         }
     }
