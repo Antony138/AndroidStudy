@@ -22,10 +22,22 @@ import java.util.UUID;
 // extends Fragment是表示：CrimeFragment是Fragment的子类吗？
 // 有两个Fragment的，要选择(android.support.v4.app)这个
 public class CrimeFragment extends Fragment {
+
+    private static final String ARG_CRIME_ID = "crime_id";
+
     private Crime mCrime;
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+
+    public static CrimeFragment newInstance(UUID crimeId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CRIME_ID,crimeId);
+
+        CrimeFragment fragment = new CrimeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     // 区别：在activity中，onCreate()方法是protected；在这里，是public，因为要被其他activity调用，所以是public。
     @Override
@@ -34,7 +46,8 @@ public class CrimeFragment extends Fragment {
 //        mCrime = new Crime();
 
         // 拿回使用者点击了哪个cell？
-        UUID crimeId = (UUID)getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+//        UUID crimeId = (UUID)getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        UUID crimeId = (UUID)getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
 

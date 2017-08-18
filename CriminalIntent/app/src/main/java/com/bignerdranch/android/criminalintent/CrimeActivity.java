@@ -14,7 +14,7 @@ public class CrimeActivity extends SingleFragmentActivity {
 
     // 点击cell的时候，用于传递数据？
     // putting an extra
-    public static final String EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crima_id";
+    private static final String EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crima_id";
 
     public static Intent newIntent(Context packageContext, UUID crimeId) {
         Intent intent = new Intent(packageContext, CrimeActivity.class);
@@ -24,7 +24,10 @@ public class CrimeActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new CrimeFragment();
+//        return new CrimeFragment();
+
+        UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+        return CrimeFragment.newInstance(crimeId);
     }
 
     // 将下面这部分代码，解耦到SingleFragmentActivity了
