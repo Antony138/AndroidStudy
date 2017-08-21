@@ -23,10 +23,16 @@ public class CrimePagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_pager);
 
+        // 链接pagerView
         mViewPager = (ViewPager) findViewById(R.id.activity_crime_pager_view_pager);
 
+        // 拿到data set
         mCrimes = CrimeLab.get(this).getCrimes();
+
+        // 和RecyclerView一样，ViewPager也需要一个adapter：
+        // 创建FragmentStatePagerAdapter，需要用到FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
+        // set adapter
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
 
             @Override
