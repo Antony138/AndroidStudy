@@ -54,7 +54,7 @@ public class CrimeFragment extends Fragment {
         // 通过直接的方式拿来id参数
 //        UUID crimeId = (UUID)getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
 
-        // 痛殴argument的方式拿回参数，是在实现CrimeFragment()方法的时候put进去的
+        // 通过argument的方式拿回参数，是在实现CrimeFragment()方法的时候put进去的
         UUID crimeId = (UUID)getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
