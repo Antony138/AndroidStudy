@@ -107,9 +107,13 @@ public class CrimeListFragment extends Fragment {
 
             // 页面跳转: 从fragment跳activity
 //            Intent intent = new Intent(getActivity(), CrimeActivity.class);
-            // 传递数据
+            // 页面跳转 + 传递数据
             // 创建新Intent的方法，由CrimeActivity负责实现。这里只负责传递id(使用者点击了哪个cell)
-            Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
+//            Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
+
+            // 跳到可以滑动的PagerView
+            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
+
             // 跳转(from fragment to activity)
             startActivity(intent);
         }
