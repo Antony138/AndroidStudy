@@ -12,12 +12,18 @@ import java.util.UUID;
 // AppCompatActivity要改为FragmentActivity吗？
 public class CrimeActivity extends SingleFragmentActivity {
 
-    // 点击cell的时候，用于传递数据？
-    // putting an extra
+    // 静态字符串, 用于传递参数时作为key用
+    // 一开始直接传递的时候(不用argument)，这个常量是public的
+    // 用了之后，就可以改为private了
     private static final String EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crima_id";
 
+    // 实现创建Intent的方法，供其他类调用，以便传递参数
+    // 意思就是：你这个activity要什么(Intent)，你自己负责，其他类没有责任帮你实现
     public static Intent newIntent(Context packageContext, UUID crimeId) {
+        // 创建新的Intent
         Intent intent = new Intent(packageContext, CrimeActivity.class);
+        // Intent包含的参数
+        // 如果要传两个以上的参数呢？1.调用多次putExtra()方法实现； 2.传递一个array,然后array里面放入所有参数.
         intent.putExtra(EXTRA_CRIME_ID, crimeId);
         return intent;
     }
@@ -26,6 +32,7 @@ public class CrimeActivity extends SingleFragmentActivity {
     protected Fragment createFragment() {
 //        return new CrimeFragment();
 
+        // 通过getSerializableExtra()拿回参数值(是在创建CrimeFragment的时候put进去的)
         UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
         return CrimeFragment.newInstance(crimeId);
     }

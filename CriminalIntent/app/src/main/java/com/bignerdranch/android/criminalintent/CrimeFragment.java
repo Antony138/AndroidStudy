@@ -23,6 +23,7 @@ import java.util.UUID;
 // 有两个Fragment的，要选择(android.support.v4.app)这个
 public class CrimeFragment extends Fragment {
 
+    // 这个是用于argument传递数据的
     private static final String ARG_CRIME_ID = "crime_id";
 
     private Crime mCrime;
@@ -31,10 +32,14 @@ public class CrimeFragment extends Fragment {
     private CheckBox mSolvedCheckBox;
 
     public static CrimeFragment newInstance(UUID crimeId) {
+
+        // 创建一个Bundle
         Bundle args = new Bundle();
+        // put参数
         args.putSerializable(ARG_CRIME_ID,crimeId);
 
         CrimeFragment fragment = new CrimeFragment();
+        // set argument
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,7 +51,10 @@ public class CrimeFragment extends Fragment {
 //        mCrime = new Crime();
 
         // 拿回使用者点击了哪个cell？
+        // 通过直接的方式拿来id参数
 //        UUID crimeId = (UUID)getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+
+        // 痛殴argument的方式拿回参数，是在实现CrimeFragment()方法的时候put进去的
         UUID crimeId = (UUID)getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
