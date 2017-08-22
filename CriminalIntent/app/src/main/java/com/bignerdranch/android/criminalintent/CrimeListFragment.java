@@ -34,6 +34,7 @@ public class CrimeListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 写了这个menu(加号)才能显示出来。
         setHasOptionsMenu(true);
     }
 

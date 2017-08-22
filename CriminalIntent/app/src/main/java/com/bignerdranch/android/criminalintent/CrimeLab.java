@@ -30,12 +30,17 @@ public class CrimeLab {
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
         // 随机创建100个对象
-        for (int i = 0; i <100; i++) {
-            Crime crime = new Crime();
-            crime.setTitle("Ctrime #" + i);
-            crime.setSolved(i % 2 == 0);
-            mCrimes.add(crime);
-        }
+//        for (int i = 0; i <100; i++) {
+//            Crime crime = new Crime();
+//            crime.setTitle("Ctrime #" + i);
+//            crime.setSolved(i % 2 == 0);
+//            mCrimes.add(crime);
+//        }
+    }
+
+    // 新增一条数据
+    public void addCrime(Crime c) {
+        mCrimes.add(c);
     }
 
     // get方法。不用set方法吗？
