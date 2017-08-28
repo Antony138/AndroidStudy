@@ -17,10 +17,10 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
 
-    public Crime() {
+    public Crime(UUID id) {
         // Generate unique identifier
         // 生成一个随机的UUID
-        mId = UUID.randomUUID();
+        mId = id;
         mDate = new Date();
     }
 
