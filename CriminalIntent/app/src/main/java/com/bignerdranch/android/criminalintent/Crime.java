@@ -24,6 +24,11 @@ public class Crime {
         mDate = new Date();
     }
 
+    // 两个存取方法？
+    public Crime() {
+        this(UUID.randomUUID());
+    }
+
     public UUID getId() {
         return mId;
     }
