@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.bignerdranch.android.criminalintent.Crime;
+import com.bignerdranch.android.criminalintent.database.CrimeDbSchema.CrimeTable;
+
 /**
  * Created by sae_antony on 28/08/2017.
  */
@@ -18,11 +21,20 @@ public class CrimeBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        // "create table"是SQLite语句？
+        // 创建数据库
+        sqLiteDatabase.execSQL("create table" + CrimeTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                CrimeTable.Cols.UUID + ", " +
+                CrimeTable.Cols.TITLE + ", " +
+                CrimeTable.Cols.DATE + ", " +
+                CrimeTable.Cols.SOLVED +
+                ")"
+        );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        
+
     }
 }
