@@ -70,6 +70,7 @@ public class CrimeFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
+        // 程序暂停时，需要更新一下数据库
         CrimeLab.get(getActivity()).updateCrime(mCrime);
     }
 

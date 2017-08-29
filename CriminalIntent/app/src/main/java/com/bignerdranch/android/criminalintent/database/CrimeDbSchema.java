@@ -4,6 +4,8 @@ package com.bignerdranch.android.criminalintent.database;
  * Created by sae_antony on 28/08/2017.
  */
 
+// 这个类(xxxSchema)定义了一个数据库中的表和字段
+
 public class CrimeDbSchema {
 
     // 数据库中的一个表
