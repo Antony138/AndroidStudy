@@ -17,6 +17,8 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
 
+    private String mSuspect;
+
     public Crime(UUID id) {
         // Generate unique identifier
         // 生成一个随机的UUID
@@ -55,5 +57,14 @@ public class Crime {
 
     public void setSolved(boolean solved) {
         mSolved = solved;
+    }
+
+    // 为了进行应用间跳转，在这里添加一个Suspect
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 }

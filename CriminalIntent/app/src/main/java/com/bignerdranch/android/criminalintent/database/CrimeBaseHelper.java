@@ -26,12 +26,22 @@ public class CrimeBaseHelper extends SQLiteOpenHelper {
         // "create table"是SQLite语句？
         // 创建数据库
         // 根据CrimeDbSchema类中定义的表格进行创建
-        sqLiteDatabase.execSQL("create table" + CrimeTable.NAME + "(" +
-                " _id integer primary key autoincrement, " +
+//        sqLiteDatabase.execSQL("create table" + CrimeTable.NAME + "(" +
+//                " _id integer primary key autoincrement, " +
+//                CrimeTable.Cols.UUID + ", " +
+//                CrimeTable.Cols.TITLE + ", " +
+//                CrimeTable.Cols.DATE + ", " +
+//                CrimeTable.Cols.SOLVED + ", " +
+//                CrimeTable.Cols.SUSPECT +
+//                ")"
+//        );
+        sqLiteDatabase.execSQL("create table " +
+                CrimeTable.NAME + "(" + " _id integer primary key autoincrement, " +
                 CrimeTable.Cols.UUID + ", " +
                 CrimeTable.Cols.TITLE + ", " +
                 CrimeTable.Cols.DATE + ", " +
-                CrimeTable.Cols.SOLVED +
+                CrimeTable.Cols.SOLVED + ", " +
+                CrimeTable.Cols.SUSPECT +
                 ")"
         );
     }
