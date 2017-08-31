@@ -127,13 +127,9 @@ public class CrimeLab {
     }
 
     public File getPhotoFile(Crime crime) {
-        File externalFilesDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        if (externalFilesDir == null) {
-            return null;
-        }
-
-        return new File(externalFilesDir, crime.getPhotoFilename());
+        // 这里有个坑，2rd和3rd的写法不一样，导致拍照闪退。
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, crime.getPhotoFilename());
     }
 
     // 更新(数据库中的)数据（在需要的时候（onPause()）调用）
