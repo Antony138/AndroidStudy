@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +37,18 @@ public class CrimeListFragment extends Fragment {
     private CrimeAdapter mAdapter;
 
     private boolean mSubtitleVisible;
+
+    private Callbacks mCallbacks;
+
+    public interface Callbacks {
+        void onCrimeSelected(Crime crime);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks) context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +87,12 @@ public class CrimeListFragment extends Fragment {
         outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
+
     // 创建添加按钮
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -94,8 +113,11 @@ public class CrimeListFragment extends Fragment {
             case R.id.new_crime:
                 Crime crime = new Crime();
                 CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId());
-                startActivity(intent);
+//                Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId());
+//                startActivity(intent);
+                // 适配tablet，改为如下：
+                updateUI();
+                mCallbacks.onCrimeSelected(crime);
                 return true;
             case R.id.show_subtitle:
                 mSubtitleVisible = !mSubtitleVisible;
@@ -185,10 +207,13 @@ public class CrimeListFragment extends Fragment {
 //            Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
 
             // 跳到可以滑动的PagerView
-            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
+//            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
 
             // 跳转(from fragment to activity)
-            startActivity(intent);
+//            startActivity(intent);
+
+            // 适配tablet
+            mCallbacks.onCrimeSelected(mCrime);
         }
     }
 
