@@ -143,7 +143,7 @@ public class CrimeListFragment extends Fragment {
     }
 
     // 刷新表格
-    private void updateUI() {
+    public void updateUI() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 

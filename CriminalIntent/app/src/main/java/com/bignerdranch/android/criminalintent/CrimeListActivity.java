@@ -7,7 +7,13 @@ import android.support.v4.app.Fragment;
  * Created by sae_antony on 15/08/2017.
  */
 
-public class CrimeListActivity extends SingleFragmentActivity implements CrimeListFragment.Callbacks {
+public class CrimeListActivity extends SingleFragmentActivity implements CrimeListFragment.Callbacks, CrimeFragment.Callbacks {
+
+    @Override
+    public void onCrimeUpdated(Crime crime) {
+        CrimeListFragment listFragment = (CrimeListFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        listFragment.updateUI();
+    }
 
     @Override
     protected Fragment createFragment() {
