@@ -28,7 +28,8 @@ public class BeatBoxFragment extends Fragment {
 
         // 配置recyclerView？
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-//        binding.recyclerView.setAdapter(new SoundAdapter(mBeatBox.getSounds()));
+        // set Adapter
+        binding.recyclerView.setAdapter(new SoundAdapter());
         return binding.getRoot();
     }
 
