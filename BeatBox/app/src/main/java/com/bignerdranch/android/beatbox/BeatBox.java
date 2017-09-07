@@ -17,18 +17,21 @@ public class BeatBox {
 
     private static final String SOUNDS_FOLDER = "sample_sounds";
 
-    private AssetManager mAsset;
+    private AssetManager mAssets;
     // 用来保存音频文件
     private List<Sound> mSounds = new ArrayList<>();
 
     public BeatBox(Context context) {
-        mAsset = context.getAssets();
+        mAssets = context.getAssets();
+
+        // 坑：一开始没有laodSounds，连网格视图都没有出来。
+        loadSounds();
     }
 
     private void loadSounds() {
         String[] soundNames;
         try {
-            soundNames = mAsset.list(SOUNDS_FOLDER);
+            soundNames = mAssets.list(SOUNDS_FOLDER);
             Log.i(TAG, "Found" + soundNames.length + "sounds");
         } catch (IOException ioe) {
             Log.e(TAG, "Could not list assets", ioe);
