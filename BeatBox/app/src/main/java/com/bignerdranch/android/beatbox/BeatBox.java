@@ -53,9 +53,15 @@ public class BeatBox {
         }
 
         for (String filename : soundNames) {
-            String assetPath = SOUNDS_FOLDER + "/" + filename;
-            Sound sound = new Sound(assetPath);
-            mSounds.add(sound);
+
+            try {
+                String assetPath = SOUNDS_FOLDER + "/" + filename;
+                Sound sound = new Sound(assetPath);
+                load(sound);
+                mSounds.add(sound);
+            } catch (IOException ioe) {
+                Log.e(TAG, "Could not laod sound " + filename, ioe);
+            }
         }
     }
 
