@@ -1,6 +1,7 @@
 package com.bignerdranch.android.beatbox;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -56,6 +57,12 @@ public class BeatBox {
             Sound sound = new Sound(assetPath);
             mSounds.add(sound);
         }
+    }
+
+    private void load(Sound sound) throws IOException {
+        AssetFileDescriptor afd = mAssets.openFd(sound.getAssetPath());
+        int soundId = mSoundPool.load(afd, 1);
+        sound.setSoundId(soundId);
     }
 
     public List<Sound> getSounds() {
