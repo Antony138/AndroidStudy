@@ -2,6 +2,8 @@ package com.bignerdranch.android.beatbox;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 
 import java.io.IOException;
@@ -17,12 +19,23 @@ public class BeatBox {
 
     private static final String SOUNDS_FOLDER = "sample_sounds";
 
+    private static final int MAX_SOUNDS = 5;
+
     private AssetManager mAssets;
     // 用来保存音频文件
     private List<Sound> mSounds = new ArrayList<>();
 
+    private SoundPool mSoundPool;
+
     public BeatBox(Context context) {
         mAssets = context.getAssets();
+
+        // This old constructor is deprecated but needed for compatibility
+        // 这是旧的构造方法，但是为了兼容，所以还是用这个。新的用SoundPool.Builder?
+        // 第一个参数：同时播放的音频文件数？
+        // 第二个参数：音频流的类型
+        // 第三个参数：sample rate的质量，0代表ignored
+        mSoundPool = new SoundPool(MAX_SOUNDS, AudioManager.STREAM_MUSIC, 0);
 
         // 坑：一开始没有laodSounds，连网格视图都没有出来。
         loadSounds();
